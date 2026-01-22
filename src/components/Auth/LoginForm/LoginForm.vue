@@ -1,35 +1,31 @@
 <script setup>
-import { reactive, ref, toRaw } from 'vue'
+import { reactive, toRaw, watch } from 'vue'
 import IButton from '@/components/IButton/IButton.vue'
 import IInput from '@/components/IInput/IInput.vue'
 import FormContainer from '../FormContainer/FormContainer.vue'
 
 const emit = defineEmits(['submit'])
 
-// const name = ref('')
-// const email = ref('')
-// const password = ref('')
-
 const userData = reactive({
-    name: '',
     email: '',
     password: '',
 })
 
+watch(
+    () => (userData) => {
+        console.log('userData changed:')
+    },
+    {
+        immediate: true,
+    }
+)
+
 const handleFormSubmit = () => {
     emit('submit', toRaw(userData))
 }
-
-const foo = ref('')
 </script>
 <template>
     <FormContainer @submit.prevent="handleFormSubmit">
-        <IInput
-            v-model="userData.name"
-            placeholder="Enter your username"
-            label="Username"
-            class="mb-4"
-        />
         <IInput
             v-model="userData.email"
             placeholder="Enter your email"
@@ -40,12 +36,9 @@ const foo = ref('')
             v-model="userData.password"
             placeholder="Enter your password"
             label="Password"
-            class="mb-4"
             type="password"
         />
 
-        <IButton class="mt-6" type="submit" variant="gradient"
-            >Register</IButton
-        >
+        <IButton class="mt-6" type="submit" variant="gradient">Login</IButton>
     </FormContainer>
 </template>

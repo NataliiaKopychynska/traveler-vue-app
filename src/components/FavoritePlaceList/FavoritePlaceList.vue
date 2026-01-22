@@ -2,21 +2,14 @@
 import FavoritePlace from '../FavoritePlace/FavoritePlace.vue'
 import IButton from '../IButton/IButton.vue'
 import placesFromApi from '../../stores/placesFromApi.js'
-import { reactive, ref } from 'vue'
+import { ref } from 'vue'
+import IIconButton from '../IIconButton/IIconButton.vue'
+import IInput from '../IInput/IInput.vue'
 
-const counter = ref(0)
-const user = ref({ name: 'Nataliia', age: 30 })
-const superUser = reactive({ name: 'Nataliia Super ', age: 30 })
+const BTNVariant = ref('gradient')
 
-const increment = () => {
-    counter.value++
-    user.value.age++
-    user.value.name = user.value.name === 'Nataliia' ? 'Kopicinska' : 'Nataliia'
-    superUser.age++
-    superUser.name =
-        superUser.name === 'Nataliia Super '
-            ? 'Kopicinska Super '
-            : 'Nataliia Super '
+const changeBTNVariant = () => {
+    BTNVariant.value = BTNVariant.value === 'gradient' ? 'outline' : 'gradient'
 }
 </script>
 <template>
@@ -28,12 +21,11 @@ const increment = () => {
             <template #description>{{ place.description }}</template>
         </FavoritePlace>
 
-        <IButton class="w-full mt-10">Add marker</IButton>
-        <IButton class="w-full mt-10" @click="increment"
-            >Counter: {{ counter }}</IButton
+        <IButton
+            :variant="BTNVariant"
+            @click="changeBTNVariant"
+            class="w-full mt-10"
+            >Add marker</IButton
         >
-        <div>User: {{ user.name }}, Age: {{ user.age }}</div>
-
-        <div>Super User: {{ superUser.name }}, Age: {{ superUser.age }}</div>
     </div>
 </template>

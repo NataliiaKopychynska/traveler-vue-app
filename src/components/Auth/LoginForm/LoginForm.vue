@@ -1,8 +1,15 @@
 <script setup>
-import { reactive, toRaw, watch } from 'vue'
-import IButton from '@/components/IButton/IButton.vue'
-import IInput from '@/components/IInput/IInput.vue'
+import { reactive, toRaw } from 'vue'
+import IButton from '../../IComponents/IButton/IButton.vue'
+import IInput from '../../IComponents/IInput/IInput.vue'
 import FormContainer from '../FormContainer/FormContainer.vue'
+
+const props = defineProps({
+    isLoading: {
+        type: Boolean,
+        default: false,
+    },
+})
 
 const emit = defineEmits(['submit'])
 
@@ -10,15 +17,6 @@ const userData = reactive({
     email: '',
     password: '',
 })
-
-watch(
-    () => (userData) => {
-        console.log('userData changed:')
-    },
-    {
-        immediate: true,
-    }
-)
 
 const handleFormSubmit = () => {
     emit('submit', toRaw(userData))
@@ -39,6 +37,12 @@ const handleFormSubmit = () => {
             type="password"
         />
 
-        <IButton class="mt-6" type="submit" variant="gradient">Login</IButton>
+        <IButton
+            class="mt-6"
+            type="submit"
+            variant="gradient"
+            :isLoading="isLoading"
+            >Login</IButton
+        >
     </FormContainer>
 </template>

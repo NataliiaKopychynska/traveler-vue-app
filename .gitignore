@@ -1,3 +1,7 @@
+#map api token
+# /srs/map/token.js
+.env
+
 # Logs
 logs
 *.log

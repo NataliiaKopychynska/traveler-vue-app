@@ -24,4 +24,21 @@ const placesFromApi = [
         createdAt: '2025-01-08',
     },
 ]
-export default placesFromApi
+
+const favoritePlaces = [
+    {
+        id: 1,
+        title: 'New place 1',
+        description: 'SUper description 1',
+        img: '',
+        lngLat: [30.523333, 50.520006],
+    },
+    {
+        id: 2,
+        title: 'New place 2',
+        description: 'SUper description 2',
+        img: '',
+        lngLat: [30.523333, 50.454001],
+    },
+]
+export { placesFromApi, favoritePlaces }

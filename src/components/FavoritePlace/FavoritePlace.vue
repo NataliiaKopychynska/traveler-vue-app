@@ -1,13 +1,63 @@
 <script setup>
 import Pencil01 from '@/assets/img/icons/Pencil01.vue'
-import IIconButton from '../IIconButton/IIconButton.vue'
+import IIconButton from '../IComponents/IIconButton/IIconButton.vue'
 import Trash04 from '@/assets/img/icons/Trash04.vue'
+
+const props = defineProps({
+    title: {
+        type: String,
+        default: 'Name place',
+    },
+    description: {
+        type: String,
+        default: 'description place',
+    },
+    img: {
+        type: String,
+        default: '',
+    },
+    isActive: {
+        required: true,
+        type: Boolean,
+        default: false,
+    },
+})
 </script>
 
 <template>
     <section class="text-[#939393] mb-6 last:mb-0">
         <div class="flex gap-4">
-            <img class="w-[76px] h-[76px] shrink-0" src="" alt="" />
+            <img class="w-18 h-[76px] shrink-0" :src="img" alt="" />
+            <div class="flex flex-col flex-1">
+                <div class="flex justify-between items-center mb-2">
+                    <h2 class="font-bold text-sm text-[#2C2C2C]">
+                        {{ title }}
+                    </h2>
+                    <div class="flex gap-2">
+                        <IIconButton><Pencil01 /></IIconButton>
+                        <IIconButton><Trash04 /></IIconButton>
+                    </div>
+                </div>
+                <p class="text-xs line-clamp-3">
+                    {{ description }}
+                </p>
+            </div>
+        </div>
+
+        <div
+            class="h-[1px] w-full bg-[#ececec] mt-4"
+            :class="{
+                'bg-primary': props.isActive,
+                'bg-[#ececec]': !props.isActive,
+            }"
+        ></div>
+    </section>
+</template>
+
+<!-- <template>
+    <section class="text-[#939393] mb-6 last:mb-0">
+        <div class="flex gap-4">
+            <img class="w-9 h-[76px] shrink-0" src="" alt="" />
             <div class="flex flex-col flex-1">
                 <div class="flex justify-between items-center mb-2">
                     <h2 class="font-bold text-sm text-[#2C2C2C]">
@@ -26,4 +76,4 @@ import Trash04 from '@/assets/img/icons/Trash04.vue'
 
         <div class="h-[1px] w-full bg-[#ececec] mt-4"></div>
     </section>
-</template>
+</template> -->

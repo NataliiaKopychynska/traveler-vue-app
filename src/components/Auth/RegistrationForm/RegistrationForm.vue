@@ -1,14 +1,17 @@
 <script setup>
 import { reactive, ref, toRaw } from 'vue'
-import IButton from '@/components/IButton/IButton.vue'
-import IInput from '@/components/IInput/IInput.vue'
+import IButton from '../../IComponents/IButton/IButton.vue'
+import IInput from '../../IComponents/IInput/IInput.vue'
 import FormContainer from '../FormContainer/FormContainer.vue'
 
-const emit = defineEmits(['submit'])
+const props = defineProps({
+    isLoading: {
+        type: Boolean,
+        default: false,
+    },
+})
 
-// const name = ref('')
-// const email = ref('')
-// const password = ref('')
+const emit = defineEmits(['submit'])
 
 const userData = reactive({
     name: '',
@@ -44,7 +47,11 @@ const foo = ref('')
             type="password"
         />
 
-        <IButton class="mt-6" type="submit" variant="gradient"
+        <IButton
+            class="mt-6"
+            type="submit"
+            variant="gradient"
+            :isLoading="isLoading"
             >Register</IButton
         >
     </FormContainer>
